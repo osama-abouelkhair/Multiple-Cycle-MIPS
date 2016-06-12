@@ -1,0 +1,80 @@
+C:/Modeltech_pe_edu_10.4a/examples/multicycle/cpu.vhd {0 {vcom -work work -2002 -explicit -stats=none {C:\Modeltech_pe_edu_10.4a\examples\multicycle\cpu.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity CPU
+-- Compiling architecture CPU of CPU
+** Error (suppressible): C:\Modeltech_pe_edu_10.4a\examples\multicycle\cpu.vhd(147): (vcom-1272) Length of expected is 32; length of actual is 30.
+
+** Error: C:\Modeltech_pe_edu_10.4a\examples\multicycle\cpu.vhd(154): VHDL Compiler exiting
+
+} {11.0 12.0} {}} {C:/Modeltech_pe_edu_10.4a/examples/multicycle/control unit.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Modeltech_pe_edu_10.4a/examples/multicycle/control unit.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity ControlUnit
+-- Compiling architecture ControlUnit of ControlUnit
+
+} {} {}} {C:/Modeltech_pe_edu_10.4a/examples/multicycle/register file.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:\Modeltech_pe_edu_10.4a\examples\multicycle\register file.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity RegFile
+-- Compiling architecture RegFile of RegFile
+
+} {} {}} C:/Modeltech_pe_edu_10.4a/examples/multicycle/register.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Modeltech_pe_edu_10.4a\examples\multicycle\register.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Reg
+-- Compiling architecture Reg of Reg
+
+} {} {}} C:/Modeltech_pe_edu_10.4a/examples/multicycle/memory.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Modeltech_pe_edu_10.4a\examples\multicycle\memory.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity Memory
+-- Compiling architecture Memory of Memory
+
+} {} {}} {C:/Modeltech_pe_edu_10.4a/examples/multicycle/dummy control unit.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Modeltech_pe_edu_10.4a/examples/multicycle/dummy control unit.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity CU
+-- Compiling architecture CU of CU
+
+} {} {}} C:/Modeltech_pe_edu_10.4a/examples/multicycle/mux.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Modeltech_pe_edu_10.4a\examples\multicycle\mux.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Mux
+-- Compiling architecture Mux of Mux
+
+} {} {}} C:/Modeltech_pe_edu_10.4a/examples/multicycle/alu.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Modeltech_pe_edu_10.4a/examples/multicycle/alu.vhd
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity Alu
+-- Compiling architecture Alu of Alu
+
+} {} {}} {C:/Modeltech_pe_edu_10.4a/examples/multicycle/alu control.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:\Modeltech_pe_edu_10.4a\examples\multicycle\alu control.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity AluControl
+-- Compiling architecture AluControl of AluControl
+
+} {} {}}

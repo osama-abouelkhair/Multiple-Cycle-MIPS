@@ -1,0 +1,29 @@
+# Current time Thu Mar 03 18:37:13 2016
+# ModelSim PE Student Edition Stack Trace
+# Program = vsim
+# Id = "10.4a"
+# Version = "2015.03"
+# Date = "Apr  7 2015"
+# Platform = win32pe
+# Signature = ac8c563de6ee885313f1754f0d1a83f5
+# 0    0x006dfd7a: '<unknown (@0x6dfd7a)>'
+# 1    0x006df66a: '<unknown (@0x6df66a)>'
+# 2    0x0051d70c: '<unknown (@0x51d70c)>'
+# 3    0x0051de24: '<unknown (@0x51de24)>'
+# 4    0x006cb470: '<unknown (@0x6cb470)>'
+# 5    0x006cbd31: '<unknown (@0x6cbd31)>'
+# 6    0x006cdcf2: '<unknown (@0x6cdcf2)>'
+# 7    0x006cdd91: '<unknown (@0x6cdd91)>'
+# 8    0xff05517a: 'C:/Modeltech_pe_edu_10.4a/examples/multicycle/memory.vhd:17'
+# 9    0x0053e2a5: '<unknown (@0x53e2a5)>'
+# 10   0x006f2a1d: '<unknown (@0x6f2a1d)>'
+# 11   0x006dbb93: '<unknown (@0x6dbb93)>'
+# 12   0x006dd31c: '<unknown (@0x6dd31c)>'
+# 13   0x00a11268: '<unknown (@0xa11268)>'
+# 14   0x1000cb1f: 'TclInvokeStringCommand + 0x8f' in 'c:\modeltech_pe_edu_10.4a\win32pe_edu\tcl85.dll'
+# 15   0x100473b5: 'Tcl_ExprObj + 0x1605' in 'c:\modeltech_pe_edu_10.4a\win32pe_edu\tcl85.dll'
+# 16   0x100462b5: 'Tcl_ExprObj + 0x505' in 'c:\modeltech_pe_edu_10.4a\win32pe_edu\tcl85.dll'
+# 17   0x1000f6a9: 'TclEvalObjEx + 0x2f9' in 'c:\modeltech_pe_edu_10.4a\win32pe_edu\tcl85.dll'
+# End of Stack Trace
+
+

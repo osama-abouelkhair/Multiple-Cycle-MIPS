@@ -1,0 +1,154 @@
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity CPU is
+port(clk : in std_logic);
+end CPU;
+
+architecture CPU of CPU is
+component Reg
+    Port ( input : in  std_logic_vector (31 downto 0);
+           en, clk : in  std_logic;
+           output : out  std_logic_vector (31 downto 0));
+end component;
+
+component Alu
+	port (srcA, srcB : in std_logic_vector(31 downto 0);
+		operation : in std_logic_vector(2 downto 0);
+		result : out std_logic_vector(31 downto 0);
+		zero : out std_logic);
+end component;
+
+component AluControl is
+	port(aluOp : in std_logic_vector(1 downto 0);
+		funct : in std_logic_vector(5 downto 0);
+		aluIn : out std_logic_vector(2 downto 0));
+end component;
+
+component ControlUnit
+	port (opCode : in std_logic_vector(5 downto 0);
+		clk : in std_logic;
+		pCWriteCond : out std_logic;
+		bne : out std_logic;
+		pCWrite : out std_logic;
+		iOrD : out std_logic;
+		iRWrite : out std_logic;
+		pCSource : out std_logic_vector(1 downto 0);
+		aluOP : out std_logic_vector(1 downto 0);
+		aluSrcB : out std_logic_vector(1 downto 0);
+		aluSrcA : out std_logic;
+		regWrite : out std_logic;
+		regDst : out std_logic;
+		memRead : out std_logic;
+		memWrite : out std_logic;
+		memToReg : out std_logic);
+end component;
+
+component Memory
+    Port ( address : in  std_logic_vector (31 downto 0);
+		dataIn : in std_logic_vector(31 downto 0);
+		memWrite, memRead : in std_logic;
+		clk : in std_logic;         
+		dataOut : out  std_logic_vector (31 downto 0));
+end component;
+
+component Mux
+	port(src0, src1, src2, src3 : in std_logic_vector(31 downto 0);
+	sel0 : in std_logic;
+	sel1 : in std_logic;
+	dataOut : out std_logic_vector(31 downto 0));
+end component;
+
+component RegFile
+	port(regA, regB, regC : in std_logic_vector(4 downto 0);
+		writeData : in std_logic_vector(31 downto 0);
+		regWrite, clk : in std_logic;
+		dataOutA, dataOutB: out std_logic_vector(31 downto 0));
+end component;
+
+--control signals
+signal iOrD : std_logic;
+signal memWrite, memRead : std_logic;
+signal iRWrite : std_logic;
+signal regDst : std_logic;
+signal memToReg: std_logic;
+signal regWrite : std_logic;
+signal aluSrcA : std_logic;
+signal aluSrcB : std_logic_vector(1 downto 0);
+signal aluOP : std_logic_vector(1 downto 0);
+signal pCWriteCond, bne : std_logic;
+signal pCWrite : std_logic;
+signal pCSource : std_logic_vector(1 downto 0);
+
+--fetch out
+signal nextAddr : std_logic_vector(31 downto 0);
+signal pCEn : std_logic;
+signal pCOut : std_logic_vector(31 downto 0);
+signal aluAddress: std_logic_vector(31 downto 0);
+signal address : std_logic_vector(31 downto 0);
+signal memoryData, memoryOut : std_logic_vector(31 downto 0);
+
+signal inst : std_logic_vector(31 downto 0);
+signal mDROut : std_logic_vector(31 downto 0);
+signal writeReg : std_logic_vector(31 downto 0);
+signal extRT : std_logic_vector(31 downto 0);
+signal extRD : std_logic_vector(31 downto 0);
+signal writeData :std_logic_vector(31 downto 0);
+
+signal signExt : std_logic_vector(31 downto 0);
+signal signExtSh: std_logic_vector(31 downto 0);
+signal jumpAddr: std_logic_vector(31 downto 0);
+--decode out
+signal rsData : std_logic_vector(31 downto 0);
+signal rtData : std_logic_vector(31 downto 0);
+
+signal aData : std_logic_vector(31 downto 0);
+signal bData : std_logic_vector(31 downto 0);
+
+signal aluInput1 : std_logic_vector(31 downto 0);
+signal aluInput2 : std_logic_vector(31 downto 0);
+signal operation : std_logic_vector(2 downto 0);
+--execution out
+signal aluRes : std_logic_vector(31 downto 0);
+signal zero : std_logic;
+signal aluOut : std_logic_vector(31 downto 0); 
+
+begin
+PC:	Reg port map(nextAddr, pCEn, clk, pCOut);
+MUX1:	Mux port map(pCOut, aluOut, (others=>'-'), (others=>'-'), iOrD, '0', address);
+MEM:	Memory port map(address, bData, memWrite, memRead, clk, memoryOut);
+IR:	Reg port map(memoryOut, iRWrite, clk, inst);
+MDR:	Reg port map(memoryOut, '1', clk, mDROut);
+extRT <= X"000000"&"000"&inst(20 downto 16);
+extRD <= X"000000"&"000"&inst(15 downto 11);
+MUXRTRD:Mux port map(extRT,extRD,(others=>'-'),(others=>'-'),
+			 regDst, '0', writeReg);
+MUXMEMALU:Mux port map(aluOut, mDROut, (others=>'-'),(others=>'-'),
+			 memToReg, '0', WriteData);
+REGS:	RegFile port map(inst(25 downto 21), inst(20 downto 16),
+			writeReg(4 downto 0), writeData, regWrite,
+			clk, rsData, rtData);
+signExt <= X"0000"&inst(15 downto 0) when inst(15) = '0' else
+		X"FFFF"&inst(15 downto 0) when inst(15) = '1';
+signExtSh <= std_logic_vector(shift_left(unsigned(signExt), 2));
+A: Reg port map( rsData, '1', clk, aData);
+B: Reg port map(rtData, '1', clk, bData);
+MUXPCA: Mux port map(pCOut, aData, (others => '-'),(others => '-'),
+		 aluSrcA,'0', aluInput1);
+MUXB:	Mux port map(bData, std_logic_vector(to_unsigned(4,32)),
+			signExt, signExtSh, aluSrcB(0), aluSrcB(1),
+			aluInput2);
+ALUCON: AluControl port map(aluOP, inst(5 downto 0), operation);
+ALUCOM:	Alu port map(aluInput1, aluInput2, operation, aluRes, zero);
+pCEn <= (zero and pCWriteCond) or (not zero and bne) or pCWrite;
+REGALUOUT: Reg port map(aluRes, '1', clk, aluOut);
+jumpAddr <= pCout(31 downto 28)&std_logic_vector(shift_left(unsigned(inst(25 downto 0)),2));
+MUXJ:	Mux port map(aluRes, aluOut, jumpAddr, (others => '-'),
+			pCSource(0),pCSource(1), nextAddr);
+CONTROL: ControlUnit port map(inst(31 downto 26), clk,
+		pCWriteCond, bne, pCWrite, iOrD, iRWrite, pCSource,
+		aluOP, aluSrcB, aluSrcA, regWrite, regDst, memRead,
+		memWrite, memToReg);
+end CPU;

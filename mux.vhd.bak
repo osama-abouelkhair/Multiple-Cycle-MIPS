@@ -1,0 +1,19 @@
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Mux is
+port(src0, src1, src2, src3 : in std_logic_vector(31 downto 0);
+	sel0 : in std_logic;
+	sel1 : in std_logic;
+	dataOut : out std_logic_vector(31 downto 0));
+end Mux;
+
+architecture Mux of Mux is
+begin
+	dataOut <= src0 when sel = "00" else
+		src1 when sel = "01" else
+		src2 when sel = "10" else
+			src3;
+end Mux;
