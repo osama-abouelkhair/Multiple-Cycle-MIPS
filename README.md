@@ -6,12 +6,12 @@ Multiple Cycle MIPS processor implementation using VHDL
 
 Open Modelsim
 
-create new project
+Create new project
 
-add all .vhd files
+Add all .vhd files
 
-start simulation
+Start simulation
 
-type do sim.do
+Type do sim.do
 
 sim.do has the simulation commands which referes one of the instruction files. Instruction files are the ones with .mem extension.
